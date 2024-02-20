@@ -1,32 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { RegisterService } from '../services/register.service';
+import { CartComponent } from '../cart/cart.component';
+ export interface Register{
+  username:string;
+  password:string;
+  email:string;
+  fullName:string;
+  mobile:number;
+  cart:{
+    cartId:number;
+  }
+ }
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent  implements OnInit{
+export class RegisterComponent implements OnInit {
   hide = true;
 
 
- 
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder, private registerService: RegisterService) {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', Validators.required],
-      mobileNumber: ['', Validators.required]
+      mobile: ['', Validators.required]
     });
-   }
-  registerForm : FormGroup;
-  ngOnInit(): void { 
+  }
+  registerForm: FormGroup;
+  ngOnInit(): void {
+   
   }
 
   onSubmitRegister() {
-    
+    const form:Register={
+      username:this.registerForm.get('username')?.value,
+      password:this.registerForm.get('password')?.value,
+      email:this.registerForm.get('email')?.value,
+      fullName:this.registerForm.get('fullName')?.value,
+      mobile:this.registerForm.get('mobile')?.value,
+      cart:{
+        cartId:0
+      }
+    }
+    if (this.registerForm.valid) {
+      this.registerService.onRegister(form).subscribe(
+        // (error) => {
+        //   alert("Failed to register User");
+        // },
+        (a) => {
+          a.alert("user registered Succesfully");
+          
+        })
+    }
+
   }
 
   allFieldsFilled(): boolean {

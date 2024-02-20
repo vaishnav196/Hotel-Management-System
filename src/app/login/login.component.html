@@ -7,7 +7,7 @@
     <div class="row   ">
         <div class="col-md-6  d-flex justify-content-center mt-5 ">
 
-            <form action=""  class=" "[formGroup]="registerForm" (ngSubmit)="onSubmitLogin()">
+            <form action=""  class=" "[formGroup]="LoginForm" (ngSubmit)="onSubmitLogin()">
                 <h2 class="login-head">Login here...</h2>
                 <div>
                     <td><mat-form-field class="example-full-width username">
@@ -27,7 +27,7 @@
                     </mat-form-field></td>
                 </div>
 
-                <button  mat-raised-button color="accent" [disabled]="!allFieldsFilled()" class="ms-5">Login</button>
+                <button  mat-raised-button color="accent" [disabled]="!allFieldsFilled()"  class="ms-5">Login</button>
             </form>
 
         </div>

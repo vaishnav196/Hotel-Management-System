@@ -22,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { AboutComponent } from './about/about.component';
-
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorInterceptor } from './Interceptor/auth-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,14 +36,20 @@ import { AboutComponent } from './about/about.component';
     OrdersComponent,
     HeaderComponent,
     AboutComponent,
+  
+   
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,MatButtonModule,MatToolbarModule,MatIconModule,FormsModule,MatFormFieldModule,MatInputModule,ReactiveFormsModule,MatTableModule,MatCardModule
+    BrowserAnimationsModule,MatButtonModule,MatToolbarModule,MatIconModule,FormsModule,MatFormFieldModule,MatInputModule,ReactiveFormsModule,MatTableModule,MatCardModule,HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,              
+    useClass:AuthInterceptorInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

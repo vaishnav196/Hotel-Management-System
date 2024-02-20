@@ -1,0 +1,92 @@
+<section>
+
+
+    <div class="container">
+        <div class="row">
+            <h3>My Cart</h3>
+            <hr>
+            <div class="col-8">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+
+                    <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> <b>Sr.No </b></th>
+                        <td mat-cell *matCellDef="let element"> {{element.position}}</td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> <b>Product Name</b> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef> <b>Price </b> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef> <b>Quantity</b> </th>
+                        <td mat-cell *matCellDef=""><button mat-mini-fab color="primary" class="dec">-</button>
+                            &nbsp; 1 &nbsp;<button  mat-mini-fab  color="accent" class="inc">+</button> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef>Remove from cart</th>
+                        <td mat-cell *matCellDef=""> <a  mat-icon  color="warn" class="ms-3 delete-icon"><i
+                                    class="fa-solid fa-trash fa-xl " color="warn" style="color: #ff0000;"></i>
+                            </a> </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+
+            <div class="col-4">
+                <div class="checkout">
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <mat-card-title>CheckOut</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <hr>
+                            <span class="subtotal">SubTotal :</span><span></span>
+                            <!-- <br>
+                            <span class="gst">GST</span>: <span></span> -->
+                            <br>
+                            <hr>
+                            <div class="discount ">
+                                <div class="coupon">
+                                    <mat-form-field class="example-full-width">
+                                        <!-- <mat-label>Favorite food</mat-label> -->
+                                        <input matInput placeholder="Apply coupon" >
+                                      </mat-form-field> 
+                                      <button mat-raised-button color="primary" class="ms-2 px-3">Apply</button>
+                                </div>
+                                <hr>
+
+                            </div>
+
+                            <span class="total-price">Total Price :&nbsp;</span> <span class="total-price">$1999</span>
+
+                        </mat-card-content>
+                        <button mat-raised-button color="warn" class="mx-2 my-3">PlaceOrder</button>
+                        <!-- <mat-card-actions>
+                           
+                          
+                        </mat-card-actions> -->
+                    </mat-card>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
